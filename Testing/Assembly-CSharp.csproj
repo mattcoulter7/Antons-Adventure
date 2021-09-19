@@ -36,9 +36,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scenes\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scenes\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scenes\Scripts\PathGen.cs" />
+     <Compile Include="Assets\Scenes\Scripts\Endless.cs" />
      <Compile Include="Assets\Scenes\Scripts\MeshGen.cs" />
-     <Compile Include="Assets\Scenes\Scripts\CollisionDebug.cs" />
+     <Compile Include="Assets\Scenes\Scripts\BallController.cs" />
+     <Compile Include="Assets\Scenes\Scripts\MeshCollider2D.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Program Files/Unity/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

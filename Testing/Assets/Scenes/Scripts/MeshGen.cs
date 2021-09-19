@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// adapted from https://blog.theknightsofunity.com/procedurally-generated-terrain-2d-infinite-runner-unity-game-tutorial/
 public class MeshGen : MonoBehaviour
 {
     private struct Segment
@@ -162,12 +163,11 @@ public class MeshGen : MonoBehaviour
             // position
             filter.transform.position = new Vector3(index * SegmentLength, 0, 0);
 
+            MeshCollider2D collider = filter.gameObject.GetComponent<MeshCollider2D>();
+            collider.UpdateCollider();
+
             // make visible
             filter.gameObject.SetActive(true);
-            
-            if(filter.gameObject.GetComponent<MeshCollider>() == null){
-                filter.gameObject.AddComponent<MeshCollider>();
-            }
 
             // register as visible segment
             var segment = new Segment();
