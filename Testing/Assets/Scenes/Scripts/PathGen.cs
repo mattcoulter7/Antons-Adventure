@@ -35,6 +35,8 @@ public class PathGen : MonoBehaviour
 
         spline.InsertPointAt(newIndex,newPoint);
         spline.SetTangentMode(newIndex,ShapeTangentMode.Continuous);
+        spline.SetRightTangent(newIndex,new Vector3(2,0,0));
+        spline.SetLeftTangent(newIndex,new Vector3(-2,0,0));
         
         return newPoint;
     }
