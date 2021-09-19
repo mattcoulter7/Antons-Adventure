@@ -75,8 +75,12 @@ public class MeshGen2 : MonoBehaviour
             cubicBezierPoint(seg.pt1.y,seg.pt2.y,seg.pt3.y,seg.MidPT().y,t) 
         );
     }
-    private Segment FrontSegment() { return _usedSegments[0]; }
-    private Segment BackSegment() { return _usedSegments[_usedSegments.Count - 1]; }
+    private Segment FrontSegment() { 
+        return _usedSegments[0];
+    }
+    private Segment BackSegment() { 
+        return _usedSegments[_usedSegments.Count - 1]; 
+    }
     // gets a meshfilter from the queue
     private MeshFilter BorrowMeshFilter(){
         // get from the pool
@@ -98,7 +102,6 @@ public class MeshGen2 : MonoBehaviour
         seg.pt3 = RandomPoint(seg.pt2.x);
         seg.pt4 = RandomPoint(seg.pt3.x);
         seg.filter = BorrowMeshFilter();
-        Debug.Log("Creating New Point: ");
         seg.Log();
 
         Mesh mesh = seg.filter.mesh;
@@ -125,9 +128,7 @@ public class MeshGen2 : MonoBehaviour
         mesh.RecalculateBounds();
 
         // position
-        seg.filter.transform.position = new Vector3(bezierPts[0].x - (bezierPts[bezierPts.Count - 1].x - bezierPts[0].x), 0, 0);
-        Debug.Log("Bezier Start: " + bezierPts[0].x);
-        Debug.Log("Bezier End: " + bezierPts[bezierPts.Count - 1].x);
+        seg.filter.transform.position = new Vector3(0, 0, 0);
 
         // collider
         MeshCollider2D collider = seg.filter.gameObject.GetComponent<MeshCollider2D>();
@@ -139,22 +140,23 @@ public class MeshGen2 : MonoBehaviour
         _usedSegments.Add(seg);
         return seg;
     }
-    
-    private void EnsureSegmentsVisible(){
-        // ensures there is always segments visible by creating more to fill the screen
+
+    // Update is called once per frame
+    void Update()
+    {
+        // ensure there is always segments visible by creating more to fill the screen
         Vector3 worldRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
-        
         // create new points as they approach
         while (BackSegment().pt4.x < (worldRight.x + boundaryWidth)){
             GenerateSegment();
         }
-    }
-    private void EnsureSegmentsNotVisible(){
+
         // removes segments that have left the screen
         Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
 
         // remove points from the front one segment is completely out
         while (FrontSegment().pt4.x < (worldLeft.x - boundaryWidth)){
+            ReturnMeshFilter(FrontSegment().filter);
             _usedSegments.RemoveAt(0);
         }
     }
@@ -208,18 +210,13 @@ public class MeshGen2 : MonoBehaviour
     }
 
     void Start(){
-        Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(-1, 0, 0));
         Segment seg = new Segment();
         seg.pt1 = new Vector2(worldLeft.x,worldLeft.y);
         seg.pt2 = RandomPoint(seg.pt1.x);
         seg.pt3 = RandomPoint(seg.pt2.x);
         seg.pt4 = RandomPoint(seg.pt3.x);
+        seg.filter = BorrowMeshFilter();
         _usedSegments.Add(seg);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        EnsureSegmentsVisible();
-        EnsureSegmentsNotVisible();
     }
 }
