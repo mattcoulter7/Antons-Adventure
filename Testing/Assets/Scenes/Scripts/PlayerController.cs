@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float downwardsForce = 500f;
-    public float maxDownwardForce = 100f;
-    private Rigidbody2D rb;
-    void Start(){
-        rb = gameObject.GetComponent<Rigidbody2D>();
+    const float BIGG = 9.8f;
+    public GameObject Anton;
+    //public Rigidbody2D phys;
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -19,8 +22,13 @@ public class PlayerController : MonoBehaviour
 
     void CalculateGravity()
     {
-        if (Input.GetKeyDown("space")){
-            rb.AddForce(new Vector2(0,-downwardsForce));
+        if (Input.GetKeyDown("space"))
+        {
+            Anton.GetComponent<Rigidbody2D>().gravityScale = BIGG * 2.0f;
+        }
+        else
+        {
+            Anton.GetComponent<Rigidbody2D>().gravityScale = BIGG * 1.0f;
         }
     }
 
@@ -28,4 +36,5 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+    
 }

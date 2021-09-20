@@ -1,122 +1,122 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MeshGen2 : MonoBehaviour
+public class BezierMeshGen : MonoBehaviour
 {
     class Segment{
-        public float Gradient(){
-            return (pt4.y - pt1.y)/(pt4.x - pt1.x);
-        }
         public float Length(){
-            return pt4.x - pt1.x;
+            return pts[3].x - pts[0].x;
         }
-        public Vector2 pt1 { get; set; }
-        public Vector2 pt2 { get; set; }
-        public Vector2 pt3 { get; set; }
-        public Vector2 pt4 { get; set; }
+        public Vector2[] pts = new Vector2[4];
+        public MeshFilter filter { get; set; } // mesh filter for rendering. Access bezier vertices via filter.mesh.vertices
         public Vector2 MidPT(){
-            float xDiff = (pt4.x - pt3.x) / 2;
-            float yDiff = (pt4.y - pt3.y) / 2;
-            return new Vector2(pt3.x + xDiff,pt3.y + yDiff);
+            // mid point in between three and four for smoothing
+            float xDiff = (pts[3].x - pts[2].x) / 2;
+            float yDiff = (pts[3].y - pts[2].y) / 2;
+            return new Vector2(pts[2].x + xDiff,pts[2].y + yDiff);
         }
-        public void Log(){        
+        public void Log(){
+            // debug 
             string points = "";
-            points += "(" + pt1.x + ", " + pt1.y + "), ";
-            points += "(" + pt2.x + ", " + pt2.y + "), ";
-            points += "(" + pt3.x + ", " + pt3.y + "), ";
-            points += "(" + pt4.x + ", " + pt4.y + "), ";
-            points += "MP: (" + MidPT().x + ", " + MidPT().y + ") ";
+            points += "pts[0]: (" + pts[0].x + ", " + pts[0].y + "), ";
+            points += "pts[1]: (" + pts[1].x + ", " + pts[1].y + "), ";
+            points += "pts[2]: (" + pts[2].x + ", " + pts[2].y + "), ";
+            points += "pts[3]: (" + pts[3].x + ", " + pts[3].y + "), ";
+            points += "pts[2]/pts[3] MP: (" + MidPT().x + ", " + MidPT().y + ") ";
             Debug.Log(points);
         }
-        public MeshFilter filter { get; set; }
     }
-    public int SegmentResolution = 32; // number of steps between 2 points
-    public float minHeight = 0; // min height value
-    public float maxHeight = 5;// max height value
+    public int SegmentResolution = 32; // number of steps in segment
+    public float minHeight = 0; // min new point height value
+    public float maxHeight = 5;// max new point  height value
 
-    public float minStep = 5; // min distance between 2 points
-    public float maxStep = 10; // max distance between two points
-    public float boundaryWidth = 10;// Width in which the points are created/destroyed, should be at least maxStep
+    public float minStep = 5; // min new point distance from last point
+    public float maxStep = 10; // max new point distance between from last point
+    public float boundaryWidth = 10; // Width in which the points are created/destroyed, should be at least maxStep
     
-    public int MeshObjectPoolSize = 30;
+    public int MeshObjectPoolSize = 30; // Number of MeshFilter initialised on awake
     public MeshFilter SegmentPrefab;// the prefab including MeshFilter and MeshRenderer
+    public bool renderDebugPoints = false;
+    public GameObject renderPointPrefab;
     private List<Segment> _usedSegments = new List<Segment>(); // list of segments that are current in use
     private Vector3[] _vertexArray;// helper array to generate new segment without further allocations
     private List<MeshFilter> _freeMeshFilters = new List<MeshFilter>();// the pool of free mesh filters
     
-    // returns a new random point based upon the parameters
     private Vector2 RandomPoint(float minX)
     {
+        // returns a new random point based upon the parameters
         return new Vector2(
             minX + Random.Range(minStep, maxStep),
             Random.Range(minHeight, maxHeight)
         );
     }
-    // returns y value of curve in a segment
-    private float GetHeight(Segment seg,float x){
-        // x value is RELATIVE to start of segment
-        float absX = seg.pt1.x + x;
-        float m = seg.Gradient(); // gradient
-        float c = seg.pt1.y; // vertical translation
-        float a = seg.pt1.x; // horizontal translation
-        // cubic function to create an s-like shape intersecting at two points
-        return m * (3*Mathf.Pow((absX-a),2) - 2*Mathf.Pow((absX-a),3)) + c;
-    }
-
     private float cubicBezierPoint(float a0, float a1, float a2, float a3, float t){
+        // get bezier pt on one axis
         return Mathf.Pow(1-t, 3) * a0 + 3* Mathf.Pow(1-t, 2) * t * a1 + 3*(1-t) * Mathf.Pow(t, 2) * a2 + Mathf.Pow(t, 3) * a3;
     }
     
     private Vector2 GetBezierPoint(float t, Segment seg)
     {
+        // get 2d bezier pt at time t: 0 <= t <= 1; Fraction of x/length
         return new Vector2(
-            cubicBezierPoint(seg.pt1.x,seg.pt2.x,seg.pt3.x,seg.MidPT().x,t), 
-            cubicBezierPoint(seg.pt1.y,seg.pt2.y,seg.pt3.y,seg.MidPT().y,t) 
+            cubicBezierPoint(seg.pts[0].x,seg.pts[1].x,seg.pts[2].x,seg.MidPT().x,t), 
+            cubicBezierPoint(seg.pts[0].y,seg.pts[1].y,seg.pts[2].y,seg.MidPT().y,t) 
         );
     }
     private Segment FrontSegment() { 
+        // Get most left segment
         return _usedSegments[0];
     }
     private Segment BackSegment() { 
+        // Get the most right segment
         return _usedSegments[_usedSegments.Count - 1]; 
     }
-    // gets a meshfilter from the queue
     private MeshFilter BorrowMeshFilter(){
-        // get from the pool
+        // gets a meshfilter from the queue
         int meshIndex = _freeMeshFilters.Count - 1;
         MeshFilter filter = _freeMeshFilters[meshIndex];
         _freeMeshFilters.RemoveAt(meshIndex);
         return filter;
     }
-    // adds the filter back into the queue
     private void ReturnMeshFilter(MeshFilter filter){
+        // adds the filter back into the queue
         filter.gameObject.SetActive(false);
         _freeMeshFilters.Add(filter);
     }
-    // creates a new segment from the end of the last segment to a new random point. Applies the graph to the mesh at the same time;
+    private void GenerateRenderPoints(Segment seg){
+        // if rendering is enabled, draw the actual points that are being used
+        if (renderDebugPoints && renderPointPrefab != null){
+            foreach (Vector2 pt in seg.pts){
+                GameObject renderPoint = Instantiate<GameObject>(renderPointPrefab);
+                renderPoint.transform.position = new Vector3(pt.x,pt.y,1);
+                Text myText = renderPoint.AddComponent<Text>();
+                myText.text = "(" + pt.x + "," + pt.y + ")";
+            }
+        }
+    }
     private Segment GenerateSegment(){
+        // creates a new segment from the end of the last segment to a new random point. Applies the graph to the mesh at the same time;
         Segment seg = new Segment();
-        seg.pt1 = BackSegment().MidPT(); // create a copy of the vector at the end for start of new segment
-        seg.pt2 = BackSegment().pt4;
-        seg.pt3 = RandomPoint(seg.pt2.x);
-        seg.pt4 = RandomPoint(seg.pt3.x);
+        seg.pts[0] = BackSegment().MidPT(); // create a copy of the vector at the end for start of new segment
+        seg.pts[1] = BackSegment().pts[3];
+        seg.pts[2] = RandomPoint(seg.pts[1].x);
+        seg.pts[3] = RandomPoint(seg.pts[2].x);
         seg.filter = BorrowMeshFilter();
         seg.Log();
 
         Mesh mesh = seg.filter.mesh;
         float step = seg.Length() / (SegmentResolution - 1);
 
-        List<Vector2> bezierPts = new List<Vector2>();
         for (int i = 0; i < SegmentResolution; ++i)
         {
             // get the relative x position
             float x = step * i;
             float t = (x) / seg.Length();
             Vector2 bezierPt = GetBezierPoint(t,seg);
-            bezierPts.Add(bezierPt);
+            
             // top vertex
-            // float yPosTop = GetHeight(seg,x); // position passed to GetHeight() must be absolute
             _vertexArray[i * 2] = new Vector3(bezierPt.x, bezierPt.y, 0);
 
             // bottom vertex always at y=0
@@ -136,7 +136,9 @@ public class MeshGen2 : MonoBehaviour
 
         // make visible
         seg.filter.gameObject.SetActive(true);
+        GenerateRenderPoints(seg);
 
+        // store in used segments
         _usedSegments.Add(seg);
         return seg;
     }
@@ -147,7 +149,7 @@ public class MeshGen2 : MonoBehaviour
         // ensure there is always segments visible by creating more to fill the screen
         Vector3 worldRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
         // create new points as they approach
-        while (BackSegment().pt4.x < (worldRight.x + boundaryWidth)){
+        while (BackSegment().pts[3].x < (worldRight.x + boundaryWidth)){
             GenerateSegment();
         }
 
@@ -155,7 +157,7 @@ public class MeshGen2 : MonoBehaviour
         Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
 
         // remove points from the front one segment is completely out
-        while (FrontSegment().pt4.x < (worldLeft.x - boundaryWidth)){
+        while (FrontSegment().pts[3].x < (worldLeft.x - boundaryWidth)){
             ReturnMeshFilter(FrontSegment().filter);
             _usedSegments.RemoveAt(0);
         }
@@ -210,13 +212,15 @@ public class MeshGen2 : MonoBehaviour
     }
 
     void Start(){
+        // create an initial starting segment that the rest continue to
         Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(-1, 0, 0));
         Segment seg = new Segment();
-        seg.pt1 = new Vector2(worldLeft.x,worldLeft.y);
-        seg.pt2 = RandomPoint(seg.pt1.x);
-        seg.pt3 = RandomPoint(seg.pt2.x);
-        seg.pt4 = RandomPoint(seg.pt3.x);
+        seg.pts[0] = new Vector2(worldLeft.x,worldLeft.y);
+        seg.pts[1] = RandomPoint(seg.pts[0].x);
+        seg.pts[2] = RandomPoint(seg.pts[1].x);
+        seg.pts[3] = RandomPoint(seg.pts[2].x);
         seg.filter = BorrowMeshFilter();
+        GenerateRenderPoints(seg);
         _usedSegments.Add(seg);
     }
 }
