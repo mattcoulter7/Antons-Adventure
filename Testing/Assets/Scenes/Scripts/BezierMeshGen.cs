@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class BezierMeshGen : MonoBehaviour
 {
-    class Segment{
+    public class Segment{
         public float Length(){
             return pts[3].x - pts[0].x;
         }
-        public Vector2[] pts = new Vector2[4];
+        public Vector2[] pts = new Vector2[4]; // array 4 points for cubic bezier
+        public List<Vector2> bezierPts; // list of pts that make the bezier curve
         public MeshFilter filter { get; set; } // mesh filter for rendering. Access bezier vertices via filter.mesh.vertices
         public Vector2 MidPT(){
             // mid point in between three and four for smoothing
@@ -24,7 +25,7 @@ public class BezierMeshGen : MonoBehaviour
             points += "pts[1]: (" + pts[1].x + ", " + pts[1].y + "), ";
             points += "pts[2]: (" + pts[2].x + ", " + pts[2].y + "), ";
             points += "pts[3]: (" + pts[3].x + ", " + pts[3].y + "), ";
-            points += "pts[2]/pts[3] MP: (" + MidPT().x + ", " + MidPT().y + ") ";
+            points += "pts[2]&pts[3] MP: (" + MidPT().x + ", " + MidPT().y + ") ";
             Debug.Log(points);
         }
     }
@@ -44,6 +45,9 @@ public class BezierMeshGen : MonoBehaviour
     private Vector3[] _vertexArray;// helper array to generate new segment without further allocations
     private List<MeshFilter> _freeMeshFilters = new List<MeshFilter>();// the pool of free mesh filters
     
+    public List<Segment> GetSegments(){
+        return _usedSegments; // for adding pattern to mesh from other scripts
+    }
     private Vector2 RandomPoint(float minX)
     {
         // returns a new random point based upon the parameters
@@ -108,20 +112,21 @@ public class BezierMeshGen : MonoBehaviour
 
         Mesh mesh = seg.filter.mesh;
         float step = seg.Length() / (SegmentResolution - 1);
-
+        List<Vector2> bezierPts = new List<Vector2>();
         for (int i = 0; i < SegmentResolution; ++i)
         {
             // get the relative x position
             float x = step * i;
             float t = (x) / seg.Length();
             Vector2 bezierPt = GetBezierPoint(t,seg);
-            
+            bezierPts.Add(bezierPt);
             // top vertex
             _vertexArray[i * 2] = new Vector3(bezierPt.x, bezierPt.y, 0);
 
             // bottom vertex always at y=0
             _vertexArray[i * 2 + 1] = new Vector3(bezierPt.x, 0, 0);
         }
+        seg.bezierPts = bezierPts;
         mesh.vertices = _vertexArray;
 
         // need to recalculate bounds, because mesh can disappear too early
