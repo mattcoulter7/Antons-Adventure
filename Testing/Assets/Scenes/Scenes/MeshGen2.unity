@@ -248,9 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0afd84e3897f9874eb85f2e0a0b9d57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMeshGen: {fileID: 0}
   speed: 1
-  scale: 0.25
+  scale: 1
+  updateCollider: 1
 --- !u!1001 &2147076758
 PrefabInstance:
   m_ObjectHideFlags: 0

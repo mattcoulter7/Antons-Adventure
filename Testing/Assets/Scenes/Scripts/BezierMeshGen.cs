@@ -44,6 +44,7 @@ public class BezierMeshGen : MonoBehaviour
     private List<Segment> _usedSegments = new List<Segment>(); // list of segments that are current in use
     private Vector3[] _vertexArray;// helper array to generate new segment without further allocations
     private List<MeshFilter> _freeMeshFilters = new List<MeshFilter>();// the pool of free mesh filters
+    private Dictionary<int,Vector3[]> _segmentVertexUpdateBuff = new Dictionary<int,Vector3[]>(); // int is index of segment
     
     public List<Segment> GetSegments(){
         return _usedSegments; // for adding pattern to mesh from other scripts
@@ -117,7 +118,7 @@ public class BezierMeshGen : MonoBehaviour
         {
             // get the relative x position
             float x = step * i;
-            float t = (x) / seg.Length();
+            float t = x / seg.Length();
             Vector2 bezierPt = GetBezierPoint(t,seg);
             bezierPts.Add(bezierPt);
             // top vertex
@@ -147,10 +148,59 @@ public class BezierMeshGen : MonoBehaviour
         _usedSegments.Add(seg);
         return seg;
     }
+    public int GetSegmentIndex(float x){
+        // return the segment that global x resides within
+        for (int i = 0; i < _usedSegments.Count; i++){
+            BezierMeshGen.Segment seg = _usedSegments[i];
+            
+            Vector2 start = seg.bezierPts[0];
+            Vector2 end = seg.bezierPts[seg.bezierPts.Count - 1];
+            if (start.x >= x && x > end.x)
+                return i;
+        }
+        return -1;
+    }
+
+    public int GetVertexIndex(Segment seg,float x){
+        float t = x / seg.Length();
+        int index = Mathf.FloorToInt(t * seg.bezierPts.Count);
+        if (index < 0 || index > seg.bezierPts.Count - 1)
+            return -1;
+        return index;
+    }
+
+    public void AffectVertexHeight(int segmentIndex, int vertexIndex,float amount = 0){
+        // external affects to the vertices call this function to affect y values
+        Segment seg = _usedSegments[segmentIndex];
+        if (!_segmentVertexUpdateBuff.ContainsKey(segmentIndex)){
+            _segmentVertexUpdateBuff[segmentIndex] = seg.filter.mesh.vertices;
+            // update to globa positions once
+            for (int i = 0; i < seg.bezierPts.Count; i++){
+                Vector2 bezierPt = seg.bezierPts[i];
+                _segmentVertexUpdateBuff[segmentIndex][i * 2] = new Vector3(bezierPt.x,bezierPt.y,0);
+            }
+        }
+        Vector3[] verts = _segmentVertexUpdateBuff[segmentIndex]; // todo ensure the dictionary array is updated here
+        verts[vertexIndex * 2].y += amount;
+    }
+    private void ApplyVertexHeightUpdates(){
+        // any changes made from AffectVertexHeight are applied once per update
+        foreach(KeyValuePair<int, Vector3[]> entry in _segmentVertexUpdateBuff)
+        {
+            Segment seg = _usedSegments[entry.Key];
+            seg.filter.mesh.vertices = entry.Value;
+        
+            MeshCollider2D collider = seg.filter.gameObject.GetComponent<MeshCollider2D>();
+            collider.UpdateCollider();
+        }
+        // remove the buff
+        _segmentVertexUpdateBuff.Clear();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        ApplyVertexHeightUpdates();
         // ensure there is always segments visible by creating more to fill the screen
         Vector3 worldRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
         // create new points as they approach
@@ -166,6 +216,7 @@ public class BezierMeshGen : MonoBehaviour
             ReturnMeshFilter(FrontSegment().filter);
             _usedSegments.RemoveAt(0);
         }
+
     }
 
     void Awake()

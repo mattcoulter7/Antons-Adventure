@@ -4,32 +4,38 @@ using UnityEngine;
 
 public class WaterMeshPattern : MonoBehaviour
 {
-    public BezierMeshGen bezierMeshGen;
     public float speed = 1;
     public float scale = 1;
-    // Start is called before the first frame update
+    public bool updateCollider = true;
+    private BezierMeshGen _bezierMeshGen;
+
+    private List<BezierMeshGen.Segment> _segments;
     void Start()
     {
-        bezierMeshGen = gameObject.GetComponent<BezierMeshGen>();
+        _bezierMeshGen = gameObject.GetComponent<BezierMeshGen>();
+    }
+
+    private float GetHeight(Vector2 pt){
+        return (float)(Mathf.Sin(Time.time * speed + pt.x + pt.y) * (scale*.5)
+        + Mathf.Sin(Time.time * speed + pt.y) * (scale*.5));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!bezierMeshGen) return;
-        List<BezierMeshGen.Segment> segments = bezierMeshGen.GetSegments();
-        foreach (BezierMeshGen.Segment seg in segments){
-            Vector3[] verts = seg.filter.mesh.vertices;
-            for (int i = 0; i < seg.bezierPts.Count; ++i){
-                Vector2 pivotVertex = seg.bezierPts[i];
-                
-                verts[i * 2] = new Vector3(pivotVertex.x,pivotVertex.y,0);
-                verts[i * 2].y += (float)(Mathf.Sin(Time.time * speed + pivotVertex.x + pivotVertex.y) * (scale*.5)
-                 + Mathf.Sin(Time.time * speed + pivotVertex.y) * (scale*.5));
+        if (!_bezierMeshGen) return;
+        _segments = _bezierMeshGen.GetSegments();
+
+        // every segment
+        for (int i = 0; i < _segments.Count; ++i){
+            BezierMeshGen.Segment seg = _segments[i];
+            // every bezier point in segment
+            for (int j = 0; j < seg.bezierPts.Count; ++j){
+                Vector2 worldVertex = seg.bezierPts[j];
+                // calculate sin wave value
+                float newHeight = GetHeight(worldVertex);
+                _bezierMeshGen.AffectVertexHeight(i,j,newHeight);
             }
-            seg.filter.mesh.vertices = verts;
-            MeshCollider2D collider = seg.filter.gameObject.GetComponent<MeshCollider2D>();
-            collider.UpdateCollider();
         }
     }
 }
