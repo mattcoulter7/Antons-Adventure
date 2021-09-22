@@ -131,6 +131,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: padding.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: padding.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: smoothing
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
       propertyPath: zoomSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -145,6 +157,22 @@ PrefabInstance:
     - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
       propertyPath: horizontalAdjustment
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: targetVerticalPadding
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: verticalSmoothingSteps
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: targetHorizontalPadding
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3249467969210674778, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: horizontalSmoothingSteps
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1967517421099873307, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
       propertyPath: m_RootOrder

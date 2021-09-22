@@ -5,60 +5,75 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject trackObject;
-    public float horizontalAdjustment = 0;
-    public float maxZoomOutScale = 2f;
-    public float zoomWhen = 1f; // within 1 unit of top of frame
-    public float zoomSpeed = 2f;
-    public float smoothSpeed = 0.125f;
-    private float originalHeight;
-    private float originalY;
-
-    private float GetZoomFactor(){
-        return Camera.main.orthographicSize / originalHeight;
-    }
-    private bool NeedToZoomOut(){
-        Vector3 worldTop =  Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0));
-        return (worldTop.y - trackObject.transform.position.y) < zoomWhen;
-    }
-    private bool CanZoomOut(){
-        return GetZoomFactor() <= maxZoomOutScale;
-    }
-    private bool NeedToZoomIn(){
-        Vector3 worldTop =  Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0));
-        return trackObject.transform.position.y < worldTop.y - zoomWhen;
-    }
-    private bool CanZoomIn(){
-        return Camera.main.orthographicSize > originalHeight;
-    }
-    private void ZoomToFit(){
-        if (NeedToZoomOut() && CanZoomOut()){
-            Camera.main.orthographicSize += Time.deltaTime * zoomSpeed;
-        }
-        else if (NeedToZoomIn() && CanZoomIn()){
-            Camera.main.orthographicSize -= Time.deltaTime * zoomSpeed;
-        }
-    }
+    public float maxZoomOutScale = 2f; // times bigger than original height
+    public Vector2 padding = new Vector2(1f,1f);
+    public float smoothing = 0.125f;
+    
+    private float _ogOrthographicSize; // the original zoom amount
+    private float _ogHeight; // the original camera height
+    private float _ogY; // the original camera y position
 
     void Start(){
-        originalHeight = Camera.main.orthographicSize;
-        originalY = transform.position.y;
+        Vector3 bl = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 tr = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+
+        _ogHeight = tr.y - bl.y;
+        _ogOrthographicSize = Camera.main.orthographicSize;
+        _ogY = Camera.main.transform.position.y;
+    }
+    private float GetCameraWidth(){
+        Vector3 bl = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 tr = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        return tr.x - bl.x;
+    }
+
+    private float GetZoomFactor(){
+        // returns proportion of how much has been zoomed in for adjusting the bottom
+        return Camera.main.orthographicSize / _ogOrthographicSize;
+    }
+    private void UpdateZoom(){
+        // calculate the height required to "fit" the target in the screen
+        float cameraBottom = Camera.main.ViewportToWorldPoint(new Vector3(0,0, 0)).y;
+        float minFitHeight = trackObject.transform.position.y - cameraBottom;
+        float targetHeight = padding.y + minFitHeight;
+        
+        // don't zoom in any further than origin height/ Don't zoom out any further than max height
+        if ((targetHeight <= _ogHeight) || (targetHeight > (maxZoomOutScale * _ogHeight))) return;
+        
+        // calculate the orthographic size for this new height
+        float targetOrthographicSize = _ogOrthographicSize * (targetHeight / _ogHeight);
+
+        // apply smoothing for the zoom
+        float toTarget = Mathf.Lerp(Camera.main.orthographicSize,targetOrthographicSize,smoothing);
+
+        // update the zoom
+        Camera.main.orthographicSize = toTarget;
+    }
+
+    private float GetDesiredY(){
+        // zoomin out at center, ensure y position is still at original y position
+        return _ogY * GetZoomFactor();
+    }
+    private float GetDesiredX(){
+        // keep camera with target
+        return trackObject.transform.position.x + (GetCameraWidth() / 2) - (padding.x);
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
+        if (trackObject == null) return;
+        // apply the zoom first
+        UpdateZoom();
+        
         // new position fix y due to middle anchor
-        Vector3 newPosition = new Vector3(transform.position.x,originalY * GetZoomFactor(),transform.position.z);
-        
-        // align horizontally with target object
-        float toTrackObject = trackObject.transform.position.x - transform.position.x + horizontalAdjustment;
-        if (toTrackObject > 0f)
-            newPosition += Vector3.right * toTrackObject;
-        
-        // adjust zoom scale to object position
-        ZoomToFit();
+        Vector3 targetPosition = new Vector3(transform.position.x,transform.position.y,transform.position.z);
+        targetPosition.x = GetDesiredX();
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position,newPosition,smoothSpeed);
-        transform.position = newPosition;
+        // apply the transformation
+        Vector3 toTargetPosition = Vector3.Lerp(transform.position,targetPosition,0.125f);
+        toTargetPosition.y = GetDesiredY();
+
+        transform.position = toTargetPosition;
     }
 }
