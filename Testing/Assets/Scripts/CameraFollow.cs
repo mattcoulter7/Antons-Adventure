@@ -16,12 +16,12 @@ public class CameraFollow : MonoBehaviour
     void Start(){
         Vector3 bl = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
         Vector3 tr = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
-
         _ogHeight = tr.y - bl.y;
         _ogOrthographicSize = Camera.main.orthographicSize;
         _ogY = Camera.main.transform.position.y;
     }
     private float GetCameraWidth(){
+        // width of camera for if it is resized
         Vector3 bl = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
         Vector3 tr = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
         return tr.x - bl.x;

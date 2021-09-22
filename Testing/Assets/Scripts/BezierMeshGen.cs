@@ -101,11 +101,15 @@ public class BezierMeshGen : MonoBehaviour
             }
         }
     }
+    private float GetInitialX(){
+        return Camera.main.ViewportToWorldPoint(new Vector3(0,0,0)).x - 20;
+    }
     private Segment GenerateSegment(){
-        // creates a new segment from the end of the last segment to a new random point. Applies the graph to the mesh at the same time;
+        // creates a new segment from the end of the last segment (ifdefined) to a new random point. Applies the graph to the mesh at the same time;
         Segment seg = new Segment();
-        seg.pts[0] = BackSegment().MidPT(); // create a copy of the vector at the end for start of new segment
-        seg.pts[1] = BackSegment().pts[3];
+
+        seg.pts[0] = _usedSegments.Count == 0 ? RandomPoint(GetInitialX()) : BackSegment().MidPT(); // create a copy of the vector at the end for start of new segment
+        seg.pts[1] = _usedSegments.Count == 0 ? RandomPoint(seg.pts[0].x) : BackSegment().pts[3];
         seg.pts[2] = RandomPoint(seg.pts[1].x);
         seg.pts[3] = RandomPoint(seg.pts[2].x);
         seg.filter = BorrowMeshFilter();
@@ -270,13 +274,6 @@ public class BezierMeshGen : MonoBehaviour
     void Start(){
         // create an initial starting segment that the rest continue to
         Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(-1, 0, 0));
-        Segment seg = new Segment();
-        seg.pts[0] = new Vector2(worldLeft.x,worldLeft.y);
-        seg.pts[1] = RandomPoint(seg.pts[0].x);
-        seg.pts[2] = RandomPoint(seg.pts[1].x);
-        seg.pts[3] = RandomPoint(seg.pts[2].x);
-        seg.filter = BorrowMeshFilter();
-        GenerateRenderPoints(seg);
-        _usedSegments.Add(seg);
+        GenerateSegment();
     }
 }

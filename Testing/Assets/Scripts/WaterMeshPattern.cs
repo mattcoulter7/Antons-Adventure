@@ -6,7 +6,6 @@ public class WaterMeshPattern : MonoBehaviour
 {
     public float speed = 1;
     public float scale = 1;
-    public bool updateCollider = true;
     private BezierMeshGen _bezierMeshGen;
 
     private List<BezierMeshGen.Segment> _segments;
@@ -29,6 +28,7 @@ public class WaterMeshPattern : MonoBehaviour
         // every segment
         for (int i = 0; i < _segments.Count; ++i){
             BezierMeshGen.Segment seg = _segments[i];
+            if (seg == null) continue;
             // every bezier point in segment
             for (int j = 0; j < seg.bezierPts.Count; ++j){
                 Vector2 worldVertex = seg.bezierPts[j];
