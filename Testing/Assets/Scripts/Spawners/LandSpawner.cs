@@ -8,11 +8,12 @@ public class LandSpawner : Spawner
     public float heightOffset = 0f;
     public float[] spawnQuantityRange = new float[2]{1,1};
     public int spawnEvery = 1;
+    public BezierMeshGen meshGenerator;
     
     public BezierMeshGen.Segment GetNextSegment()
     {
         // gets next segment outside of screen
-        List<BezierMeshGen.Segment> segments = GetComponent<BezierMeshGen>().GetSegments();
+        List<BezierMeshGen.Segment> segments = meshGenerator.GetSegments();
         return segments[segments.Count - 1];
     }
     public override void Spawn(){

@@ -13,27 +13,31 @@ public class CameraFollow : MonoBehaviour
     private float _ogHeight; // the original camera height
     private float _ogY; // the original camera y position
 
+    private Camera _camera;
+
     void Start(){
-        Vector3 bl = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
-        Vector3 tr = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        _camera = GetComponent<Camera>();
+
+        Vector3 bl = _camera.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 tr = _camera.ViewportToWorldPoint(new Vector3(1, 1, 0));
         _ogHeight = tr.y - bl.y;
-        _ogOrthographicSize = Camera.main.orthographicSize;
-        _ogY = Camera.main.transform.position.y;
+        _ogOrthographicSize = _camera.orthographicSize;
+        _ogY = _camera.transform.position.y;
     }
     private float GetCameraWidth(){
         // width of camera for if it is resized
-        Vector3 bl = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
-        Vector3 tr = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        Vector3 bl = _camera.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 tr = _camera.ViewportToWorldPoint(new Vector3(1, 1, 0));
         return tr.x - bl.x;
     }
 
     private float GetZoomFactor(){
         // returns proportion of how much has been zoomed in for adjusting the bottom
-        return Camera.main.orthographicSize / _ogOrthographicSize;
+        return _camera.orthographicSize / _ogOrthographicSize;
     }
     private void UpdateZoom(){
         // calculate the height required to "fit" the target in the screen
-        float cameraBottom = Camera.main.ViewportToWorldPoint(new Vector3(0,0, 0)).y;
+        float cameraBottom = _camera.ViewportToWorldPoint(new Vector3(0,0, 0)).y;
         float minFitHeight = trackObject.transform.position.y - cameraBottom;
         float targetHeight = padding.y + minFitHeight;
         
@@ -44,10 +48,10 @@ public class CameraFollow : MonoBehaviour
         float targetOrthographicSize = _ogOrthographicSize * (targetHeight / _ogHeight);
 
         // apply smoothing for the zoom
-        float toTarget = Mathf.Lerp(Camera.main.orthographicSize,targetOrthographicSize,smoothing);
+        float toTarget = Mathf.Lerp(_camera.orthographicSize,targetOrthographicSize,smoothing);
 
         // update the zoom
-        Camera.main.orthographicSize = toTarget;
+        _camera.orthographicSize = toTarget;
     }
 
     private float GetDesiredY(){
