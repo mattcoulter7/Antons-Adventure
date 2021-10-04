@@ -36,12 +36,24 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MeshCollider2D.cs" />
-     <Compile Include="Assets\Scripts\WaterRipple.cs" />
-     <Compile Include="Assets\Scripts\WaterMeshPattern.cs" />
-     <Compile Include="Assets\Scripts\BallController.cs" />
-     <Compile Include="Assets\Scripts\CameraFollow.cs" />
-     <Compile Include="Assets\Scripts\BezierMeshGen.cs" />
+     <Compile Include="Assets\Scripts\Spawners\Spawner.cs" />
+     <Compile Include="Assets\Scripts\GameObject\AutoDestroyTimer.cs" />
+     <Compile Include="Assets\Scripts\GameObject\AutoDestroyNotVisible.cs" />
+     <Compile Include="Assets\Scripts\Spawners\LandSpawner.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Distance.cs" />
+     <Compile Include="Assets\Scripts\GameObject\MeshCollider2D.cs" />
+     <Compile Include="Assets\Scripts\Terrain\WaterRipple.cs" />
+     <Compile Include="Assets\Scripts\Particles\WaterSplash.cs" />
+     <Compile Include="Assets\Scripts\Terrain\WaterMeshPattern.cs" />
+     <Compile Include="Assets\Scripts\Player\BallController.cs" />
+     <Compile Include="Assets\Scripts\Particles\AutoDestroyParticle.cs" />
+     <Compile Include="Assets\Scripts\Spawners\CameraSpawner.cs" />
+     <Compile Include="Assets\Scripts\Obstacles\FishController.cs" />
+     <Compile Include="Assets\Scripts\GameObject\RotateTowardsRigidBody2D.cs" />
+     <Compile Include="Assets\Scripts\Obstacles\HoneyController.cs" />
+     <Compile Include="Assets\Scripts\Obstacles\BirdFootController.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Terrain\BezierMeshGen.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Program Files/Unity/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
