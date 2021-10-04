@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae33baf689355fe408737de876a1b7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: {fileID: 0}
-  text: {fileID: 0}
+  distance: {fileID: 877864158}
+  text: {fileID: 1559379926}
 --- !u!1 &877864157
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +520,7 @@ MonoBehaviour:
   - 1
   - 32
   spawnEvery: 3
+  meshGenerator: {fileID: 2045412604}
 --- !u!114 &1868867857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +543,7 @@ MonoBehaviour:
   - 1
   - 1
   spawnEvery: 1
+  meshGenerator: {fileID: 2045412604}
 --- !u!4 &1868867858
 Transform:
   m_ObjectHideFlags: 0
