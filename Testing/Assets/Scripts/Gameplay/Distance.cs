@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Distance : MonoBehaviour
 {
-    public GameObject determinedBy;
+    public float distance => _currentDistance;
     private float _initialPos;
-    public float GetDistance(){
-        return determinedBy.transform.position.x - _initialPos;
-    }
+    private float _currentDistance;
     // Start is called before the first frame update
     void Start()
     {
-        _initialPos = determinedBy.transform.position.x;
+        _initialPos = transform.position.x;
+    }
+    void Update(){
+        _currentDistance = transform.position.x - _initialPos;
     }
 }

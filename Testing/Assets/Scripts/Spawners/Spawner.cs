@@ -26,7 +26,7 @@ abstract public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (distance.GetDistance() >= _nextDistance)
+        if (distance.distance >= _nextDistance)
         {
             Spawn();
             SetRandomNextTime();

@@ -12,7 +12,7 @@ public class FadeAway : MonoBehaviour
     void Start()
     {
         _startTime = Time.time;
-        _alphaColor = GetComponent<MeshRenderer>().material.color;
+        _alphaColor = GetComponent<SpriteRenderer>().material.color;
         _alphaColor.a = 0;
     }
 
