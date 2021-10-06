@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6796382584254114719}
   - component: {fileID: -6591466611168060220}
   - component: {fileID: -5303837628733349438}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Honey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
