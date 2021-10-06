@@ -493,8 +493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4396075447160858322, guid: 2714bd60073527c41894489e5e394321, type: 3}
   spawnDistanceInterval:
-  - 50
-  - 100
+  - 500
+  - 1000
   distance: {fileID: 877864158}
   position: 0100000002000000
   offset: {x: 0, y: 5}

@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Spawners\Spawner.cs" />
+     <Compile Include="Assets\Scripts\Menus\MainMenu.cs" />
      <Compile Include="Assets\Scripts\GameObject\AutoDestroyTimer.cs" />
      <Compile Include="Assets\Scripts\GameObject\AutoDestroyNotVisible.cs" />
      <Compile Include="Assets\Scripts\Spawners\LandSpawner.cs" />
@@ -52,11 +53,11 @@
      <Compile Include="Assets\Scripts\GameObject\RotateTowardsRigidBody2D.cs" />
      <Compile Include="Assets\Scripts\Obstacles\HoneyController.cs" />
      <Compile Include="Assets\Scripts\Obstacles\BirdFootController.cs" />
+     <Compile Include="Assets\Scripts\Menus\Options.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Terrain\BezierMeshGen.cs" />
      <Compile Include="Assets\UI\UIUpdater.cs" />
-     <Compile Include="Assets\Scripts\Menus\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\Menus\Options.cs" />
+     <Compile Include="Assets\Scripts\GameObject\FadeAway.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

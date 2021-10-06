@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3238287193718264865}
   - component: {fileID: 6796382584254114719}
   - component: {fileID: -6591466611168060220}
+  - component: {fileID: -5303837628733349438}
   m_Layer: 0
   m_Name: Honey
   m_TagString: Untagged
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038d11390012b434e99c0fa607b4135b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropSpeed: 0.001
+  dropSpeed: 0.0005
 --- !u!114 &-6591466611168060220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,4 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3090b98bcd47bdf41b95883763e09398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 5
+  destroyTime: 3.5
+--- !u!114 &-5303837628733349438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885723772836509740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269b63dfb54ca2b43977c84fbf83846c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1.5
+  fadeAfter: 2
