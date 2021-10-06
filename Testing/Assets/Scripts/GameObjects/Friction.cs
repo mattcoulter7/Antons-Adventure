@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowDown : MonoBehaviour
+public class Friction : MonoBehaviour
 {
-    public GameObject slowDownPrefab; // object which slows the player down
-    public float slowDownFactor = 0.5f;
+    public float amount = 0.5f; // amount the object is slowed down by
+    
+    void OnTriggerEnter2D(Collider2D col){
+        // pull object into itself if it has a rigid body
+        Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+        if (rb != null){
+           rb.velocity *= amount;
+        }
+    }
 }
