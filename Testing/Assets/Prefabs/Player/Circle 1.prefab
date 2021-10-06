@@ -14,6 +14,10 @@ GameObject:
   - component: {fileID: 4288472773911740669}
   - component: {fileID: 7120510987593100909}
   - component: {fileID: 6695776524052827649}
+  - component: {fileID: 8302978702307357542}
+  - component: {fileID: 8853113076290061749}
+  - component: {fileID: 2185370960930786747}
+  - component: {fileID: 5457625544033567043}
   m_Layer: 0
   m_Name: Circle 1
   m_TagString: Untagged
@@ -146,4 +150,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe66fc709c19ad408b825b925c072c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForceMultiplier: 2
+  maxForceMultiplier: 10
+--- !u!114 &8302978702307357542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753566033817791215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2decd9e9da8c4344d92e6d1d667ed399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 0.05
+--- !u!114 &8853113076290061749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753566033817791215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377262b49c9f86e4096b49ec85c41811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2185370960930786747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753566033817791215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8eefdceb35e68488dd0f9f43f26518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constantDecreaseAmount: 10
+  minArea: 1
+  maxArea: 10000
+  increaseFactor: 1.3
+--- !u!114 &5457625544033567043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753566033817791215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd90e35b3207aa64384a6960171588c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  streakAppliedForce: {x: 2000, y: 400}
+  tolerance: 50
+  cooldown: 2
