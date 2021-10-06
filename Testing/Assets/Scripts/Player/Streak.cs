@@ -30,6 +30,10 @@ public class Streak : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    public void Receive(float points){
+        _areaCovered += points;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
