@@ -33,6 +33,17 @@ public class FadeAway : MonoBehaviour
         if (currentDuration > fadeAfter)
         {
             _sr.material.color = Color.Lerp(_sr.material.color, _alphaColor, fadeDuration * Time.deltaTime);
+
+            // return to pool once it is no longer visible
+            if (_sr.material.color.a == 0){
+                // return to object pool if it exists otherwise destory it
+                ObjectPoolReference objPoolRef = GetComponent<ObjectPoolReference>();
+                if (objPoolRef && objPoolRef.objectPool){
+                    objPoolRef.objectPool.Return(gameObject);
+                } else {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }

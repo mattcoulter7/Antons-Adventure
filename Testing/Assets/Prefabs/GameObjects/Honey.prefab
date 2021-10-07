@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1755302610290189458}
   - component: {fileID: 3238287193718264865}
   - component: {fileID: 6796382584254114719}
-  - component: {fileID: 7946367946188756977}
   - component: {fileID: -5303837628733349438}
   - component: {fileID: -6953868189791598525}
   - component: {fileID: 2475551918275387288}
@@ -102,20 +101,6 @@ MonoBehaviour:
   dropSpeedRange:
   - 0.0005
   - 0.0015
---- !u!114 &7946367946188756977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5885723772836509740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f8718cf07d1dd4eb44eb6d2fb739ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xOffset: 0
-  objectPool: {fileID: 5849897694768609754, guid: 19ad8b3b4e252ee4b89f7abd561de1f3, type: 3}
 --- !u!114 &-5303837628733349438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 100
-  objectPool: {fileID: 5849897694768609754, guid: 19ad8b3b4e252ee4b89f7abd561de1f3, type: 3}
 --- !u!60 &2475551918275387288
 PolygonCollider2D:
   m_ObjectHideFlags: 0
