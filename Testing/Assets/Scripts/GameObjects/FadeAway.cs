@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class FadeAway : MonoBehaviour
 {
-    public float fadeDuration=1.0f; // fade for 1 second
-    public float fadeAfter=1.0f; // fade after 1 second
+    public float fadeDuration = 1.0f; // fade for 1 second
+    public float fadeAfter = 1.0f; // fade after 1 second
     private Color _alphaColor;
+    private Color _ogColor;
     private float _startTime;
+    private SpriteRenderer _sr;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         _startTime = Time.time;
-        _alphaColor = GetComponent<SpriteRenderer>().material.color;
+        _sr.material.color = _ogColor; // reset the color back to normal
+    }
+    void Awake()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+
+        _ogColor = _sr.material.color;
+        _alphaColor = _sr.material.color;
         _alphaColor.a = 0;
+        _startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
         float currentDuration = Time.time - _startTime;
-        if (currentDuration > fadeAfter){
-            GetComponent<SpriteRenderer>().material.color = Color.Lerp(GetComponent<SpriteRenderer>().material.color, _alphaColor, fadeDuration * Time.deltaTime);
+        if (currentDuration > fadeAfter)
+        {
+            _sr.material.color = Color.Lerp(_sr.material.color, _alphaColor, fadeDuration * Time.deltaTime);
         }
     }
 }

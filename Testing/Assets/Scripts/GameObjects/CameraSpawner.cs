@@ -47,6 +47,7 @@ public class CameraSpawner : Spawner
     public override void Spawn(){
         Vector2 spawnPoint = GetSpawnPoint();
 
-        Instantiate(prefab, spawnPoint, Quaternion.identity);
+        GameObject obj = objectPool.Borrow();
+        obj.transform.position = spawnPoint;
     }
 }

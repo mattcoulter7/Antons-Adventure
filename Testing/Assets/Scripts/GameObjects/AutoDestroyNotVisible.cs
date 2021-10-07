@@ -16,7 +16,13 @@ public class AutoDestroyNotVisible : MonoBehaviour
     {
         if (_renderer){
             if (!_renderer.isVisible){
-                Destroy(gameObject);
+                // return to object pool if it exists otherwise destory it
+                ObjectPoolReference objPoolRef = GetComponent<ObjectPoolReference>();
+                if (objPoolRef && objPoolRef.objectPool){
+                    objPoolRef.objectPool.Return(gameObject);
+                } else {
+                    Destroy(gameObject);
+                }
             }
         }
     }

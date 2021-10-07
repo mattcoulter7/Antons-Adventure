@@ -7,7 +7,6 @@ public class Options : MonoBehaviour
 {
     public GameObject mainMenu;
     public void OnVolumeSlide(Slider slider){
-        Debug.Log(slider.value);
     }
 
     public void OnBack(){

@@ -26,7 +26,6 @@ public class BezierMeshGen : MonoBehaviour
             points += "pts[2]: (" + pts[2].x + ", " + pts[2].y + "), ";
             points += "pts[3]: (" + pts[3].x + ", " + pts[3].y + "), ";
             points += "pts[2]&pts[3] MP: (" + MidPT().x + ", " + MidPT().y + ") ";
-            Debug.Log(points);
         }
     }
     public int SegmentResolution = 32; // number of steps in segment

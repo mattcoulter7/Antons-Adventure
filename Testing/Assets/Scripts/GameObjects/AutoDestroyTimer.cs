@@ -6,6 +6,7 @@ public class AutoDestroyTimer : MonoBehaviour
 {
     public float destroyTime = 5f;
     private float _startTime;
+    public ObjectPool objectPool;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,13 @@ public class AutoDestroyTimer : MonoBehaviour
     void Update()
     {
         if (Time.time - _startTime > destroyTime){
-            Destroy(gameObject);
+            // return to object pool if it exists otherwise destory it
+            ObjectPoolReference objPoolRef = GetComponent<ObjectPoolReference>();
+            if (objPoolRef && objPoolRef.objectPool){
+                objPoolRef.objectPool.Return(gameObject);
+            } else {
+                Destroy(gameObject);
+            }
         }
     }
 }

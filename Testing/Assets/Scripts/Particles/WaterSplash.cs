@@ -15,7 +15,6 @@ public class WaterSplash : MonoBehaviour
             return;
         }
         float impactVelocity = col.relativeVelocity.magnitude;
-        Debug.Log(impactVelocity);
         // spawn new particles
         if (impactVelocity > minSpashVelocity){
             Vector2 pos = col.contacts[0].point;

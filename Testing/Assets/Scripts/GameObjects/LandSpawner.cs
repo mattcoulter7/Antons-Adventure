@@ -26,9 +26,15 @@ public class LandSpawner : Spawner
         // spawn the objects
         for (int i = 0; i < spawnQty; i++){
             if (i % spawnEvery == 0){
-                Vector2 spawnPoint = spawnSegment.bezierPts[i];
-                spawnPoint.y += heightOffset;
-                Instantiate(prefab, spawnPoint, Quaternion.identity);
+                Vector3 position = prefab.transform.position;
+                position.x = spawnSegment.bezierPts[i].x;
+                position.y = spawnSegment.bezierPts[i].y;
+                position.y += heightOffset;
+
+                GameObject obj = objectPool.Borrow();
+                if (obj){
+                    obj.transform.position = position;
+                }
             }
         }
 
