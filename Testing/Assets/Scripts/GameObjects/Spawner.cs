@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPool))]
 abstract public class Spawner : MonoBehaviour
 {
-    public GameObject prefab;
-    public int poolSize = 100;
     public float[] spawnDistanceInterval = new float[2] { 5, 10 };
 
     private float _nextDistance = 0f;

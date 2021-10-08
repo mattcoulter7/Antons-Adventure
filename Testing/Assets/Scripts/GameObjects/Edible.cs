@@ -11,14 +11,14 @@ public class Edible : MonoBehaviour
         Streak s = col.GetComponent<Streak>();
         if (s != null){
             s.Receive(points);
-        }
 
-        // return to object pool if it exists otherwise destory it
-        ObjectPoolReference objPoolRef = GetComponent<ObjectPoolReference>();
-        if (objPoolRef && objPoolRef.objectPool){
-            objPoolRef.objectPool.Return(gameObject);
-        } else {
-            Destroy(gameObject);
+            // return to object pool if it exists otherwise destory it
+            ObjectPoolReference objPoolRef = GetComponent<ObjectPoolReference>();
+            if (objPoolRef && objPoolRef.objectPool){
+                objPoolRef.objectPool.Return(gameObject);
+            } else {
+                Destroy(gameObject);
+            }
         }
     }
 }

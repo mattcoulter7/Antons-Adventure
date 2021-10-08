@@ -6,7 +6,6 @@ public class AutoDestroyTimer : MonoBehaviour
 {
     public float destroyTime = 5f;
     private float _startTime;
-    public ObjectPool objectPool;
     // Start is called before the first frame update
     void Start()
     {
