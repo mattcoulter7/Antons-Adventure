@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db685cb49ecbc2040b1cdcd3fcba7a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 0.5
+  amount: 0.8
 --- !u!114 &-419682448068611675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,4 +137,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xOffset: 4
-  objectPool: {fileID: 7481573214949257068, guid: c2b848b60003f9b49b13d4062f968e75, type: 3}

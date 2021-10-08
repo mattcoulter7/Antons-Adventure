@@ -9,7 +9,7 @@ public class Friction : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
         // pull object into itself if it has a rigid body
         Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
-        if (rb != null){
+        if (rb != null && !col.isTrigger){
            rb.velocity *= amount;
         }
     }
