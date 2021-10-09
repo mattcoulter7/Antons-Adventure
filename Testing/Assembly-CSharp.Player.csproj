@@ -53,24 +53,31 @@
      <Compile Include="Assets\Scripts\GameObjects\AutoDestroyNotVisible.cs" />
      <Compile Include="Assets\Scripts\GameObjects\LandSpawner.cs" />
      <Compile Include="Assets\Scripts\Player\Distance.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\InitialForce.cs" />
+     <Compile Include="Assets\myBtnSFX.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\ObjectPoolReference.cs" />
      <Compile Include="Assets\Scripts\GameObjects\MeshCollider2D.cs" />
      <Compile Include="Assets\Scripts\Terrain\WaterRipple.cs" />
      <Compile Include="Assets\Scripts\Particles\WaterSplash.cs" />
      <Compile Include="Assets\Scripts\Terrain\WaterMeshPattern.cs" />
      <Compile Include="Assets\Scripts\Player\BallController.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Friction.cs" />
      <Compile Include="Assets\Scripts\Player\Streak.cs" />
      <Compile Include="Assets\Scripts\Particles\AutoDestroyParticle.cs" />
      <Compile Include="Assets\Scripts\GameObjects\CameraSpawner.cs" />
      <Compile Include="Assets\Scripts\GameObjects\FadeAway.cs" />
      <Compile Include="Assets\Scripts\GameObjects\RotateTowardsRigidBody2D.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\MoveDown.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\AutoDestroyLeftOfScreen.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\RandomConstantVelocity.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\RotateAtRigidBody2D.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\UI\Menus\Options.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Terrain\BezierMeshGen.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateDistance.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateStreakMeter.cs" />
-     <Compile Include="Assets\Scripts\Player\Eat.cs" />
-     <Compile Include="Assets\Scripts\Player\SlowDown.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Edible.cs" />
+     <Compile Include="Assets\MeshRendererSortingEditor.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Program Files/Unity/2020.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.dll</HintPath>
  </Reference>
