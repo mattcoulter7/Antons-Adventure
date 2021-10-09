@@ -262,6 +262,14 @@ PrefabInstance:
       propertyPath: meshGenerator
       value: 
       objectReference: {fileID: 2045412604}
+    - target: {fileID: 203387000518023349, guid: c8be663872eea064ead6d8c9ae6f7a21, type: 3}
+      propertyPath: spawnDistanceInterval.Array.data[0]
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 203387000518023349, guid: c8be663872eea064ead6d8c9ae6f7a21, type: 3}
+      propertyPath: spawnDistanceInterval.Array.data[1]
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 203387000518023351, guid: c8be663872eea064ead6d8c9ae6f7a21, type: 3}
       propertyPath: m_RootOrder
       value: 8
