@@ -363,4 +363,5 @@
 "Assets/Scripts/UI/Menus/Options.cs"
 "Assets/Scripts/UI/UpdateDistance.cs"
 "Assets/Scripts/UI/UpdateStreakMeter.cs"
-"Assets/onHover.cs"
+"Assets/myBtnSFX.cs"
+"Assets/splashSFX.cs"

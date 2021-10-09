@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GameObjects\LandSpawner.cs" />
      <Compile Include="Assets\Scripts\Player\Distance.cs" />
      <Compile Include="Assets\Scripts\GameObjects\InitialForce.cs" />
+     <Compile Include="Assets\myBtnSFX.cs" />
      <Compile Include="Assets\Scripts\GameObjects\ObjectPoolReference.cs" />
      <Compile Include="Assets\Scripts\GameObjects\MeshCollider2D.cs" />
      <Compile Include="Assets\Scripts\Terrain\WaterRipple.cs" />
