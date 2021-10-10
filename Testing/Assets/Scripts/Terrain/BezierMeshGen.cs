@@ -37,6 +37,8 @@ public class BezierMeshGen : MonoBehaviour
     
     public int MeshObjectPoolSize = 30; // Number of MeshFilter initialised on awake
     public MeshFilter SegmentPrefab;// the prefab including MeshFilter and MeshRenderer
+    public bool renderDebugPoints = false;
+    public GameObject renderPointPrefab;
     private List<Segment> _usedSegments = new List<Segment>(); // list of segments that are current in use
     private Vector3[] _vertexArray;// helper array to generate new segment without further allocations
     private List<MeshFilter> _freeMeshFilters = new List<MeshFilter>();// the pool of free mesh filters
@@ -86,6 +88,17 @@ public class BezierMeshGen : MonoBehaviour
         filter.gameObject.SetActive(false);
         _freeMeshFilters.Add(filter);
     }
+    private void GenerateRenderPoints(Segment seg){
+        // if rendering is enabled, draw the actual points that are being used
+        if (renderDebugPoints && renderPointPrefab != null){
+            foreach (Vector2 pt in seg.pts){
+                GameObject renderPoint = Instantiate<GameObject>(renderPointPrefab);
+                renderPoint.transform.position = new Vector3(pt.x,pt.y,1);
+                Text myText = renderPoint.AddComponent<Text>();
+                myText.text = "(" + pt.x + "," + pt.y + ")";
+            }
+        }
+    }
     private float GetInitialX(){
         return Camera.main.ViewportToWorldPoint(new Vector3(0,0,0)).x - 20;
     }
@@ -133,6 +146,7 @@ public class BezierMeshGen : MonoBehaviour
 
         // make visible
         seg.filter.gameObject.SetActive(true);
+        GenerateRenderPoints(seg);
 
         // store in used segments
         _usedSegments.Add(seg);
