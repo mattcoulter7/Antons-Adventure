@@ -7,6 +7,7 @@ using UnityEngine;
 public class MeshCollider2D : MonoBehaviour
 {
     public bool isTrigger = false;
+    public PhysicsMaterial2D physicsMaterial;
     private PolygonCollider2D polygonCollider;
     public void UpdateCollider(){
         // Stop if no mesh filter exists or there's already a collider
@@ -47,6 +48,9 @@ public class MeshCollider2D : MonoBehaviour
             polygonCollider = gameObject.AddComponent<PolygonCollider2D>();
             if (isTrigger){
                 polygonCollider.isTrigger = true;
+            }
+            if (physicsMaterial){
+                polygonCollider.sharedMaterial = physicsMaterial;
             }
         }
         polygonCollider.pathCount = 0;

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  physicsMaterial: {fileID: 6200000, guid: 571890073d9d5a34c9bf0bd5b8f7b256, type: 2}
 --- !u!114 &6254292865204320549
 MonoBehaviour:
   m_ObjectHideFlags: 0

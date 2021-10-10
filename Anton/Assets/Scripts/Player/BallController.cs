@@ -10,6 +10,8 @@ public class BallController : MonoBehaviour
     public float maxForceMultiplier = 2f;
     private Rigidbody2D rb;
     public float dThrust = 50f;
+    private Vector2 tangent;
+    private bool colliding = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,27 @@ public class BallController : MonoBehaviour
         if (rb.velocity.x < 0)
         {
             GameOver();
+        }
+        colliding = false;
+    }
+
+    // calculation the perpendicular vector to collision
+    void OnCollisionEnter2D(Collision2D col){
+        if (col.gameObject.name == "Segment(Clone)"){
+            colliding = true;
+            Vector2 normal = col.contacts[0].normal;
+            Vector2 perp = Vector2.Perpendicular(normal) * -1;
+
+            float currMagnitude = rb.velocity.magnitude;
+            perp.Normalize();
+
+            perp *= currMagnitude;
+            tangent = perp;
+            foreach (var item in col.contacts)
+            {
+                Vector2 perpdebug = Vector2.Perpendicular(item.normal) * -1;
+                Debug.DrawRay(item.point, perpdebug * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), 10f);
+            }
         }
     }
 }

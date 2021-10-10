@@ -11,6 +11,7 @@ public class BezierMeshGen : MonoBehaviour
         public Vector2[] pts = new Vector2[4]; // array 4 points for cubic bezier
         public List<Vector2> bezierPts; // list of pts that make the bezier curve
         public MeshFilter filter { get; set; } // mesh filter for rendering. Access bezier vertices via filter.mesh.vertices
+        public PhysicsMaterial2D physicsMaterial;
         public Vector2 MidPT(){
             // mid point in between three and four for smoothing
             float xDiff = (pts[3].x - pts[2].x) / 2;
