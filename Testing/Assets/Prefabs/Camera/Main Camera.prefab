@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4805943929575373791}
   - component: {fileID: 4805943929575373784}
   - component: {fileID: 800427116590276195}
+  - component: {fileID: 8848510227127511451}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -97,6 +98,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackObject: {fileID: 0}
-  maxZoomOutScale: 10
+  maxZoomOutScale: 5
   padding: {x: 5, y: 3}
   smoothing: 0.3
+--- !u!114 &8848510227127511451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805943929575373785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cbe07c165b75f4f94e65ed623237f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackObject: {fileID: 0}
+  iconPrefab: {fileID: 1461758841713066416, guid: a55ce79dc851b8b4f9dc74bc105123d7, type: 3}
+  iconPadding: 2
+  trackPadding: 1
