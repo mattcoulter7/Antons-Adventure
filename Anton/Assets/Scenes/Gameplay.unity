@@ -1449,31 +1449,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261761615}
   m_CullTransparentMesh: 1
---- !u!1 &1389518629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1109622985225839801, guid: 678e2066509170141b155906d44f16b4, type: 3}
+--- !u!114 &1389518631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3612116270737234135, guid: 678e2066509170141b155906d44f16b4, type: 3}
   m_PrefabInstance: {fileID: 1109622984287723587}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1389518630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389518629}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 246268341348e6649816f61d9033f4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SegmentResolution: 32
-  minHeight: 0
-  maxHeight: 8
-  minStep: 5
-  maxStep: 10
-  boundaryWidth: 10
-  MeshObjectPoolSize: 30
-  SegmentPrefab: {fileID: -7062542189675713235, guid: ddef6b6ca77f88445afa075ecd2f55dd, type: 3}
 --- !u!1 &1633650394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1879,7 @@ PrefabInstance:
     - target: {fileID: 203387000518023349, guid: c8be663872eea064ead6d8c9ae6f7a21, type: 3}
       propertyPath: meshGenerator
       value: 
-      objectReference: {fileID: 1389518630}
+      objectReference: {fileID: 1389518631}
     - target: {fileID: 203387000518023349, guid: c8be663872eea064ead6d8c9ae6f7a21, type: 3}
       propertyPath: spawnDistanceInterval.Array.data[0]
       value: 200
@@ -2237,7 +2223,7 @@ PrefabInstance:
     - target: {fileID: 5849897694768609733, guid: 19ad8b3b4e252ee4b89f7abd561de1f3, type: 3}
       propertyPath: meshGenerator
       value: 
-      objectReference: {fileID: 1389518630}
+      objectReference: {fileID: 1389518631}
     - target: {fileID: 5849897694768609754, guid: 19ad8b3b4e252ee4b89f7abd561de1f3, type: 3}
       propertyPath: _pool.Array.size
       value: 0
@@ -2465,7 +2451,7 @@ PrefabInstance:
     - target: {fileID: 7481573214949257069, guid: c2b848b60003f9b49b13d4062f968e75, type: 3}
       propertyPath: meshGenerator
       value: 
-      objectReference: {fileID: 1389518630}
+      objectReference: {fileID: 1389518631}
     - target: {fileID: 7481573214949257071, guid: c2b848b60003f9b49b13d4062f968e75, type: 3}
       propertyPath: m_Name
       value: PlantSpawner
