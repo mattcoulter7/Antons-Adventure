@@ -109,4 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 6377424455353536094, guid: 4d4c4dc06fb6b8f429f677b53e2f5b26, type: 3}
-  minSpashVelocity: 0.5
+  minSpashVelocity: 1000
