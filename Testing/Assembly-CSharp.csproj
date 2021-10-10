@@ -42,9 +42,9 @@
      <Compile Include="Assets\Scripts\GameObjects\AutoDestroyNotVisible.cs" />
      <Compile Include="Assets\Scripts\GameObjects\LandSpawner.cs" />
      <Compile Include="Assets\Scripts\Player\Distance.cs" />
-     <Compile Include="Assets\splashSFX.cs" />
+     <Compile Include="Assets\Scripts\Sounds\splashSFX.cs" />
      <Compile Include="Assets\Scripts\GameObjects\InitialForce.cs" />
-     <Compile Include="Assets\myBtnSFX.cs" />
+     <Compile Include="Assets\Scripts\Sounds\myBtnSFX.cs" />
      <Compile Include="Assets\Scripts\GameObjects\ObjectPoolReference.cs" />
      <Compile Include="Assets\Scripts\GameObjects\MeshCollider2D.cs" />
      <Compile Include="Assets\Scripts\Terrain\WaterRipple.cs" />
@@ -59,7 +59,7 @@
      <Compile Include="Assets\Scripts\GameObjects\RotateTowardsRigidBody2D.cs" />
      <Compile Include="Assets\Scripts\GameObjects\AutoDestroyLeftOfScreen.cs" />
      <Compile Include="Assets\Scripts\GameObjects\RandomConstantVelocity.cs" />
-     <Compile Include="Assets\MeshRendererSortingEditor.cs" />
+     <Compile Include="Assets\Scripts\UnityExtensions\MeshRendererSortingEditor.cs" />
      <Compile Include="Assets\Scripts\GameObjects\RotateAtRigidBody2D.cs" />
      <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\UI\Menus\Options.cs" />
@@ -68,7 +68,8 @@
      <Compile Include="Assets\Scripts\UI\UpdateDistance.cs" />
      <Compile Include="Assets\Scripts\UI\UpdateStreakMeter.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Edible.cs" />
-     <Compile Include="Assets\RevealOutOfScreen.cs" />
+     <Compile Include="Assets\Scripts\Camera\RevealOutOfScreen.cs" />
+     <Compile Include="Assets\Scripts\Camera\BackgroundScroller.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
