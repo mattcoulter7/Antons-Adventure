@@ -388,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 100
+  honeySFX: {fileID: 8300000, guid: 8c2fa50a7c90d4bb795820d6da2ba6c9, type: 3}
 --- !u!114 &-6568442344112889098
 MonoBehaviour:
   m_ObjectHideFlags: 0

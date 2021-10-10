@@ -2008,6 +2008,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2242584347523489532, guid: 678e2066509170141b155906d44f16b4, type: 3}
+      propertyPath: Priority
+      value: 93
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242584347523489532, guid: 678e2066509170141b155906d44f16b4, type: 3}
       propertyPath: m_Volume
       value: 0.046
       objectReference: {fileID: 0}
@@ -2137,6 +2141,10 @@ PrefabInstance:
     - target: {fileID: 4444627395056179650, guid: 36f0e83066e22084ba9d49a76a9909e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444627395056179651, guid: 36f0e83066e22084ba9d49a76a9909e9, type: 3}
+      propertyPath: Priority
+      value: 89
       objectReference: {fileID: 0}
     - target: {fileID: 4444627395056179676, guid: 36f0e83066e22084ba9d49a76a9909e9, type: 3}
       propertyPath: m_Name
