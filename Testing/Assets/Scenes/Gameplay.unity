@@ -692,6 +692,10 @@ PrefabInstance:
       propertyPath: trackObject
       value: 
       objectReference: {fileID: 4952207251831926390}
+    - target: {fileID: 800427116590276195, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
+      propertyPath: maxZoomOutScale
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4805943929575373785, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -752,6 +756,10 @@ PrefabInstance:
     - target: {fileID: 1753566033817791215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
       propertyPath: m_Name
       value: Anton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753566033817791215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1753566033817791215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
       propertyPath: m_TagString

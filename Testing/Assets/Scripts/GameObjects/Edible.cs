@@ -7,6 +7,7 @@ public class Edible : MonoBehaviour
     public float points = 100f;
 
     void OnTriggerEnter2D(Collider2D col){
+        if (col.isTrigger) return;
         // add points to the collided objects streak
         Streak s = col.GetComponent<Streak>();
         if (s != null){
