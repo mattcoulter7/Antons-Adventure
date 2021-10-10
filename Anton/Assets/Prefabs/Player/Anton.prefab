@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1753566033817791216}
   - component: {fileID: 4288472773911740669}
   - component: {fileID: 7120510987593100909}
-  - component: {fileID: 6695776524052827649}
   - component: {fileID: 8853113076290061749}
   - component: {fileID: 2185370960930786747}
   - component: {fileID: 7504570962620342496}
+  - component: {fileID: 5218927673463192820}
   m_Layer: 0
   m_Name: Anton
   m_TagString: Untagged
@@ -137,19 +137,6 @@ ConstantForce2D:
   m_Force: {x: 0.5, y: 0}
   m_RelativeForce: {x: 0.5, y: 0}
   m_Torque: 0
---- !u!114 &6695776524052827649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753566033817791215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe66fc709c19ad408b825b925c072c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxForceMultiplier: 10
 --- !u!114 &8853113076290061749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +180,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4c5d1f34de18c41ace9ab9be935c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5218927673463192820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753566033817791215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e653e5c1e15cd41b6b10ca68a8550f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverScreen: {fileID: 0}
+  notGameOver: 1
+  maxForceMultiplier: 20
+  dThrust: 325
