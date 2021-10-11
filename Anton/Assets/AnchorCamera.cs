@@ -5,17 +5,13 @@ using UnityEngine;
 public class AnchorCamera : MonoBehaviour
 {
     public Camera camera;
-    public Vector2 offset = new Vector2(0,0);
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 offset = new Vector3(0,0,0);
+
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 topRight = Camera.main.ScreenToWorldPoint(new Vector2(camera.pixelWidth, camera.pixelHeight));
+        Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(camera.pixelWidth, camera.pixelHeight,0));
         transform.position = topRight + offset;
     }
 }
