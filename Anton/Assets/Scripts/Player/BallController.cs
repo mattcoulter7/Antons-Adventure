@@ -62,7 +62,7 @@ public class BallController : MonoBehaviour
             foreach (var item in col.contacts)
             {
                 Vector2 perpdebug = Vector2.Perpendicular(item.normal) * -1;
-                Debug.DrawRay(item.point, perpdebug * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), 10f);
+                //Debug.DrawRay(item.point, perpdebug * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), 10f);
             }
         }
     }

@@ -157,9 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SegmentResolution: 32
   minHeight: 1
-  maxHeight: 10
+  maxHeight: 8
   minStep: 5
   maxStep: 10
-  boundaryWidth: 10
+  boundaryWidth: 30
   MeshObjectPoolSize: 30
   SegmentPrefab: {fileID: -7062542189675713235, guid: ddef6b6ca77f88445afa075ecd2f55dd, type: 3}

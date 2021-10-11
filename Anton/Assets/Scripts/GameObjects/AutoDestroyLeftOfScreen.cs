@@ -18,7 +18,7 @@ public class AutoDestroyLeftOfScreen : MonoBehaviour
         float cameraLeft = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0)).x;
 
         // out of screen
-        if (transform.position.x < cameraLeft){
+        if (transform.position.x - xOffset < cameraLeft){
             // return to object pool if it exists otherwise destory it
             ObjectPoolReference objPoolRef = GetComponent<ObjectPoolReference>();
             if (objPoolRef && objPoolRef.objectPool){
