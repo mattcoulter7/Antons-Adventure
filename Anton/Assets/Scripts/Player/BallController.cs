@@ -36,7 +36,7 @@ public class BallController : MonoBehaviour
             {
                 Debug.Log("input");
                 rb.AddForce(-transform.up * dThrust);
-                rb.AddForce(transform.right * 10f); //cheeky bit of sideways force to help with feel
+                rb.AddForce(transform.right * 5f); //cheeky bit of sideways force to help with feel
             }
         }
 
