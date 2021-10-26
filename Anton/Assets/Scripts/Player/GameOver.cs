@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour
 
     public void Setup() 
     {
+        Time.timeScale = 0;
         float dist = distance.distance;
         gameObject.SetActive(true);
         distanceText.text = "Distance Travelled: " + dist.ToString();
@@ -18,11 +19,13 @@ public class GameOver : MonoBehaviour
 
     public void RestartButton() 
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Gameplay");
     }
 
     public void MainMenuButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }

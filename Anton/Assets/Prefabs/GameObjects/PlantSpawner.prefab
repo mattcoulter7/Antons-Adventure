@@ -44,18 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa71d14f7205e6f4cb260c7596b31c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8552654144351430794, guid: f55d0016c560ce3408a5ca586571050e, type: 3}
-  poolSize: 100
   spawnDistanceInterval:
-  - 50
   - 100
+  - 250
   distance: {fileID: 0}
   objectPool: {fileID: 0}
-  heightOffset: 0
+  heightOffset: 1
   spawnQuantityRange:
-  - 20
-  - 40
-  spawnEvery: 4
+  - 10
+  - 30
+  spawnEvery: 5
   meshGenerator: {fileID: 0}
 --- !u!114 &7481573214949257068
 MonoBehaviour:
@@ -71,4 +69,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8552654144351430794, guid: f55d0016c560ce3408a5ca586571050e, type: 3}
   poolSize: 100
-  _pool: []

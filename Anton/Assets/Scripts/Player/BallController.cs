@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public GameOver gameOverScreen;
-    public bool notGameOver = true;
+    public bool gameOver = false;
 
     public float maxForceMultiplier = 2f;
     private Rigidbody2D rb;
@@ -18,18 +18,17 @@ public class BallController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.AddRelativeForce(Vector2.right * maxForceMultiplier);
         rb.AddForce(transform.right * 500f);
-        Debug.Log("test force");
     }
 
     public void GameOver() 
     {
-        notGameOver = false;
+        gameOver = true;
         gameOverScreen.Setup();
     }
 
     void Update()
     {
-        if (notGameOver)
+        if (!gameOver)
         {
             //Downward force added if space or left mouse button clicked
             if (Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.Mouse0))
@@ -38,13 +37,13 @@ public class BallController : MonoBehaviour
                 rb.AddForce(-transform.up * dThrust);
                 rb.AddForce(transform.right * 5f); //cheeky bit of sideways force to help with feel
             }
-        }
 
-        if (rb.velocity.x < 0)
-        {
-            GameOver();
+            if (rb.velocity.x < 0)
+            {
+                GameOver();
+            }
+            colliding = false;
         }
-        colliding = false;
     }
 
     // calculation the perpendicular vector to collision
