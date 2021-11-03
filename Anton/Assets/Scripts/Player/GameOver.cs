@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour
     public void Setup() 
     {
         Time.timeScale = 0;
-        float dist = distance.distance;
+        int dist = (int)distance.distance;
         gameObject.SetActive(true);
         distanceText.text = "Distance Travelled: " + dist.ToString();
     }

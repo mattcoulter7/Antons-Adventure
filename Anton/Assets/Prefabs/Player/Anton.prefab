@@ -134,8 +134,8 @@ ConstantForce2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753566033817791215}
   m_Enabled: 1
-  m_Force: {x: 0.5, y: 0}
-  m_RelativeForce: {x: 0.5, y: 0}
+  m_Force: {x: 1.2, y: 0}
+  m_RelativeForce: {x: 1.2, y: 0}
   m_Torque: 0
 --- !u!114 &8853113076290061749
 MonoBehaviour:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   constantDecreaseAmount: 9
   minArea: 1
-  maxArea: 5000
+  maxArea: 2000
   increaseFactor: 1.3
   streakAppliedForce: {x: 1000, y: 500}
   tolerance: 50
@@ -193,6 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 0}
-  notGameOver: 1
+  gameOver: 0
   maxForceMultiplier: 20
   dThrust: 325

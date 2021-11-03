@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackObject: {fileID: 0}
-  maxZoomOutScale: 5
+  maxZoomOutScale: 3
   padding: {x: 5, y: 3}
   smoothing: 0.3
 --- !u!114 &8848510227127511451
