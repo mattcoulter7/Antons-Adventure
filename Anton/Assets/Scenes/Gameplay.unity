@@ -3717,7 +3717,7 @@ PrefabInstance:
       objectReference: {fileID: 4952207251831926390}
     - target: {fileID: 800427116590276195, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
       propertyPath: maxZoomOutScale
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4805943929575373785, guid: 2f11c9a9da4f52343993b4d941c6cc6f, type: 3}
       propertyPath: m_Name
