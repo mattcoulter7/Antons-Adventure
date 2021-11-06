@@ -30,5 +30,6 @@ public class TestControl : MonoBehaviour
     void LoadValues(){
     	float volumeVal = PlayerPrefs.GetFloat("VolVal");
     	volSlider.value = volumeVal;
+        AudioListener.volume = volumeVal;
     }
 }
