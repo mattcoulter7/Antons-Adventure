@@ -2268,6 +2268,46 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &845741718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8914374337697118124, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+  m_PrefabInstance: {fileID: 6695776523127375001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &845741721
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845741718}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &845741723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845741718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3976f77cd46382e42824d8754109164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainObject: {fileID: 4952207251831926395}
+  rotationSpeed: 0.2
 --- !u!1 &848107139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4059,6 +4099,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1753566033817791215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
   m_PrefabInstance: {fileID: 6695776523127375001}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &4952207251831926395 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1753566033817791216, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+  m_PrefabInstance: {fileID: 6695776523127375001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4952207251831926398 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8853113076290061749, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
@@ -4230,6 +4275,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1318471343707047233, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1318471343707047233, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 650560643
+      objectReference: {fileID: 0}
     - target: {fileID: 1753566033817791215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
       propertyPath: m_Name
       value: Anton
@@ -4241,6 +4294,14 @@ PrefabInstance:
     - target: {fileID: 1753566033817791215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753566033817791216, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753566033817791217, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1753566033817791218, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
       propertyPath: m_RootOrder
@@ -4290,6 +4351,10 @@ PrefabInstance:
       propertyPath: wooshSFX
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4143721546729497215, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5218927673463192820, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
       propertyPath: audioManager
       value: 
@@ -4308,6 +4373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 1753566033817791217, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c6e118044326044cb48b83b0dfad807, type: 3}
 --- !u!1001 &7171478155326650728
 PrefabInstance:
