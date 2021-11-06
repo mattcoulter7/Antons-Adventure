@@ -6,9 +6,11 @@ public class Edible : MonoBehaviour
 {
     public float points = 100f;
     public AudioClip honeySFX;
+    // public AudioSource honeySFX;
+    // public AudioManager audioManager;
 
     void Start(){
-        //honeySFX = GetComponent<AudioSource> ();
+        // honeySFX = GetComponent<AudioSource> ();
     } 
 
     void OnTriggerEnter2D(Collider2D col){
@@ -17,6 +19,9 @@ public class Edible : MonoBehaviour
         Streak s = col.GetComponent<Streak>();
         if (col.gameObject.tag == "Player"){
             AudioSource.PlayClipAtPoint(honeySFX, transform.position, 12f);
+        //     //honeySFX.Play();
+            // audioManager.Play("Honey");
+            Debug.Log("Player Collide");
         }
         if (s != null){
             s.Receive(points);
@@ -26,10 +31,14 @@ public class Edible : MonoBehaviour
             if (objPoolRef && objPoolRef.objectPool){
                 objPoolRef.objectPool.Return(gameObject);
             } else {
-                Destroy(gameObject);
+                Destroy(gameObject);//Invoke("Kill", 1/2);
             }
         }
 
         
     }
+
+    // void Kill(){
+    //     
+    // }
 }

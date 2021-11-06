@@ -25,7 +25,7 @@ public class Streak : MonoBehaviour
     private Rigidbody2D _rb; // rigid body reference for applying force
     private float _lastUsed = -1f;
 
-    public AudioSource wooshSFX;
+    //public AudioManager audioManager;
 
     void Start(){
         _areaCovered = minArea;
@@ -58,7 +58,7 @@ public class Streak : MonoBehaviour
         // apply the force when fully charged
         if (area >= maxArea - tolerance){
             _rb.AddForce(streakAppliedForce);
-            wooshSFX.Play();
+            FindObjectOfType<AudioManager>().Play("Woosh");
             _areaCovered = minArea;
             _lastUsed = Time.time;
         }

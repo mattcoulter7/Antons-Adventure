@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7171478154593416361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7171478154593416362}
+  - component: {fileID: 7171478154593416363}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7171478154593416362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171478154593416361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7171478154593416363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171478154593416361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d957f57a146f24bdcbba0a1bab52f05d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 3e8a72eb195c84d2ba0933bcbf30ffd4, type: 3}
+    volume: 0.59
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Water
+    clip: {fileID: 8300000, guid: 585de0e7bd1384f4fb54c59fa0cf7f9b, type: 3}
+    volume: 0.13
+    pitch: 0.71
+    loop: 1
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: bda78412ea86f4065a52840fdfb73ad8, type: 3}
+    volume: 0.27
+    pitch: 1.49
+    loop: 1
+    source: {fileID: 0}
+  - name: Splash
+    clip: {fileID: 8300000, guid: ccc5d02b242344ea797d2db48c5e2cc4, type: 3}
+    volume: 0.69
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Woosh
+    clip: {fileID: 8300000, guid: 4512f361e7ce44dd8b0391967834d7cd, type: 3}
+    volume: 0.69
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Honey
+    clip: {fileID: 8300000, guid: 8c2fa50a7c90d4bb795820d6da2ba6c9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

@@ -12,6 +12,9 @@ public class BallController : MonoBehaviour
     public float dThrust = 50f;
     private Vector2 tangent;
     private bool colliding = false;
+
+    public AudioManager audioManager;
+    public float minSpashVelocity = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +51,15 @@ public class BallController : MonoBehaviour
 
     // calculation the perpendicular vector to collision
     void OnCollisionEnter2D(Collision2D col){
+        float impactVelocity = col.relativeVelocity.magnitude;
         if (col.gameObject.name == "Segment(Clone)"){
+            Debug.Log("Segment Collide");
+
+            //replaced where the splash was coming from
+            if( impactVelocity > minSpashVelocity){
+                 audioManager.Play("Splash");
+            }
+           
             colliding = true;
             Vector2 normal = col.contacts[0].normal;
             Vector2 perp = Vector2.Perpendicular(normal) * -1;
@@ -63,6 +74,11 @@ public class BallController : MonoBehaviour
                 Vector2 perpdebug = Vector2.Perpendicular(item.normal) * -1;
                 //Debug.DrawRay(item.point, perpdebug * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), 10f);
             }
+        }
+
+        if(col.gameObject.name == "Honey(Clone)"){
+            audioManager.Play("Honey");
+            Debug.Log("PLAYING HONEY");
         }
     }
 }
